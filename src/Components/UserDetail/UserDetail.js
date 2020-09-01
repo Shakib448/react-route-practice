@@ -8,7 +8,10 @@ const UserDetail = () => {
 
     const [userDetail , setUserDetail] = useState({});
 
-    const {name , email, phone, website, username, address: {street}} = userDetail;
+    const {name , email, phone, website, username, address, company  } = userDetail;
+
+    console.log(userDetail.address);
+
 
     let {userId} = useParams();
 
@@ -26,7 +29,7 @@ const UserDetail = () => {
         }
         userFetchData();
         
-    },[])
+    }, [])
 
 
     return (
@@ -37,8 +40,10 @@ const UserDetail = () => {
             <h1>Email : {email} </h1>
             <h1>Website : {website} </h1>
             <h1>Username : {username} </h1>
-            <h1>Address : {street}</h1>
-          
+            {
+            userDetail.address &&  <h1>Street : {address.street} </h1>,
+            userDetail.company &&  <h1>Company : {company.name} </h1>
+            }
         </div>
     )
 }
